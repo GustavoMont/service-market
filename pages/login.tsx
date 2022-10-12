@@ -14,15 +14,20 @@ import PasswordInput from "../components/Form/PasswordInput";
 
 function Login() {
   return (
-    <Body className="bg-slate-900 flex items-center justify-center">
+    <Body className="bg-gradient-to-br from-dark_primary to-primary flex items-center justify-center">
       <main className="w-full">
         <WhiteCard>
           <Stack spacing={8}>
             <div className="text-center">
-              <Heading as="h3" size="xl">
+              <Heading as="h3" size="xl" color="primary">
                 Faça seu Login
               </Heading>
-              <Text fontSize="md" className="mt-2">
+              <Text
+                fontWeight={500}
+                fontSize="md"
+                className="mt-2"
+                color="light_black"
+              >
                 Aproveite todas as oportunidades
               </Text>
             </div>
@@ -37,12 +42,15 @@ function Login() {
                 </InputGroup>
                 <PasswordInput variant={"filled"} />
                 <Link>
-                  <Text className="text-secondary">Esqueci minha senha</Text>
+                  <Text className="text-secondary underline">
+                    Esqueci minha senha
+                  </Text>
                 </Link>
                 <Button
+                  color={"white"}
                   loadingText="Submitting"
-                  colorScheme="teal"
                   variant="solid"
+                  bg={"primary"}
                   className="bg-primary"
                 >
                   Fazer login
