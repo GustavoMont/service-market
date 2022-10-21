@@ -1,5 +1,5 @@
-import Cookies from "models/cookies";
-import Token from "models/token";
+import Cookies from "models/Cookies";
+import Token from "models/Token";
 import { parseCookies } from "nookies";
 
 export default function getToken(): Token | null {

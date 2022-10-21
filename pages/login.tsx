@@ -13,8 +13,9 @@ import {
 import PasswordInput from "../components/Form/PasswordInput";
 import api from "config/axios";
 import { setCookie } from "nookies";
-import Token from "models/token";
+import Token from "models/Token";
 import { useRouter } from "next/router";
+import useUser from "data/hooks/useUser";
 
 interface LoginFields {
   email: string;
@@ -22,6 +23,7 @@ interface LoginFields {
 }
 
 function Login() {
+  const { setUserByToken } = useUser();
   const [loginFields, setLoginFields] = useState<LoginFields>({
     email: "",
     password: "",
@@ -42,6 +44,7 @@ function Login() {
     try {
       const { data } = await api.post<Token>("/clients/login", loginFields);
       setCookie(null, "access", data.access);
+      setUserByToken && setUserByToken(data.access);
       clearFields();
       router.push("/");
     } catch (error) {}

@@ -1,4 +1,4 @@
-import Token from "./token";
+import Token from "./Token";
 
 export default interface Cookies {
   access: Token;
