@@ -2,7 +2,6 @@ import React, { useState, ChangeEvent } from "react";
 import Body from "../components/common/Body";
 import WhiteCard from "../components/common/WhiteCard";
 import {
-  Button,
   Heading,
   Input,
   InputGroup,
@@ -16,6 +15,7 @@ import { setCookie } from "nookies";
 import Token from "models/Token";
 import { useRouter } from "next/router";
 import useUser from "data/hooks/useUser";
+import Button from "@/components/common/Button";
 
 interface LoginFields {
   email: string;
@@ -23,7 +23,7 @@ interface LoginFields {
 }
 
 function Login() {
-  const { setUserByToken } = useUser();
+  const { login } = useUser();
   const [loginFields, setLoginFields] = useState<LoginFields>({
     email: "",
     password: "",
@@ -43,10 +43,8 @@ function Login() {
     e.preventDefault();
     try {
       const { data } = await api.post<Token>("/clients/login", loginFields);
-      setCookie(null, "access", data.access);
-      setUserByToken && setUserByToken(data.access);
       clearFields();
-      router.push("/");
+      login(data);
     } catch (error) {}
   }
 
@@ -82,6 +80,7 @@ function Login() {
                 </InputGroup>
                 <PasswordInput
                   variant={"filled"}
+                  placeholder="Insira sua senha"
                   onChange={onChange}
                   name="password"
                   value={loginFields.password}
@@ -92,17 +91,29 @@ function Login() {
                   </Text>
                 </Link>
                 <Button
-                  _hover={{ background: "dark_primary" }}
+                  colorType="common"
                   color={"white"}
                   loadingText="Submitting"
                   variant="solid"
                   bg={"primary"}
-                  className="bg-primary"
                   type="submit"
                 >
                   Fazer login
                 </Button>
               </form>
+              <Button
+                colorType="common"
+                color={"primary"}
+                variant={"ghost"}
+                display="block"
+                marginX="auto"
+                marginY={"2"}
+                onClick={() => {
+                  router.push("signup");
+                }}
+              >
+                Criar Conta
+              </Button>
             </div>
           </Stack>
         </WhiteCard>

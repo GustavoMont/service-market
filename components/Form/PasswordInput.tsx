@@ -15,12 +15,7 @@ function PasswordInput(props: PasswordInputProps) {
 
   return (
     <InputGroup size="md">
-      <Input
-        pr="4.5rem"
-        type={show ? "text" : "password"}
-        placeholder="Insira sua senha"
-        {...props}
-      />
+      <Input pr="4.5rem" type={show ? "text" : "password"} {...props} />
       <InputRightElement width="4.5rem">
         <Button h="1.75rem" size="sm" onClick={handleClick}>
           {show ? "Hide" : "Show"}

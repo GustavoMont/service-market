@@ -1,11 +1,15 @@
+import Token from "models/Token";
 import User from "models/User";
 import { createContext } from "react";
 
 interface UserContextProps {
   user: User | null;
-  setUserByToken?: (token: string) => void;
+  login: (data: Token) => void;
 }
 
-const UserContext = createContext<UserContextProps>({ user: null });
+const UserContext = createContext<UserContextProps>({
+  user: null,
+  login: (data) => {},
+});
 
 export default UserContext;
